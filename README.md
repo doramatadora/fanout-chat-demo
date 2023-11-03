@@ -12,15 +12,17 @@ To enable realtime updates, [Fastly Fanout](https://docs.fastly.com/products/fan
 [GRIP (Generic Realtime Intermediary Protocol)](https://pushpin.org/docs/protocols/grip/) proxy. Responses for streaming
 requests are held open by Fanout, operating at the Fastly edge. Then, as updates become ready, the backend application publishes these updates through Fanout to all connected clients. For details on this mechanism, see [Real-time Updates](#real-time-updates) below.
 
-The functionality
+### 1. Backend (origin)
 
-* The backend for this web application is written in Python and hosted on [Glitch](https://glitch.com/). It uses the [Django framework](https://www.djangoproject.com), and [SQLite](https://www.sqlite.org/) to maintain a small database. The frontend for this web application is a standard HTML application that uses [jQuery](https://jquery.com/). The files that compose the frontend are served by the backend as static files. The live instance can be [viewed and remixed on Glitch](https://glitch.com/~?). 
-
-* The [Fastly Compute](https://www.fastly.com/products/edge-compute) application that handles [passwordless authentication at the edge](https://www.github.com/doramatadora/passwordless-demo), also passes auth'd traffic through to the web application, and activates the [Fanout feature](https://docs.fastly.com/products/fanout) for relevant requests.
+The backend for this web application is written in Python. It uses the [Django framework](https://www.djangoproject.com), and [SQLite](https://www.sqlite.org/) to maintain a small database. The frontend for this web application is a standard HTML application that uses [jQuery](https://jquery.com/). The files that compose the frontend are served by the backend as static files. 
 
 The backend runs on [Glitch](https://glitch.com/), and the project can be [viewed and remixed here](https://glitch.com/~?).
 
-The Compute application is at [?.edgecompute.app](https:///?.edgecompute.app/). It is configured with the above Glitch application as the backend, and the service has the [Fanout feature enabled](https://developer.fastly.com/learning/concepts/real-time-messaging/fanout/#enable-fanout).
+### 2. Serverless compute (edge)
+
+The [Fastly Compute](https://www.fastly.com/products/edge-compute) application that handles [passwordless authentication at the edge](https://www.github.com/doramatadora/passwordless-demo), also passes auth'd traffic through to the web application, and activates the [Fanout feature](https://docs.fastly.com/products/fanout) for relevant requests.
+
+The Compute application is at [?.edgecompute.app](https:///?.edgecompute.app/). It is configured with the above Glitch application as the backend, and the service also has the [Fanout feature enabled](https://developer.fastly.com/learning/concepts/real-time-messaging/fanout/#enable-fanout).
 
 ## Run your own
 
@@ -58,9 +60,9 @@ The chat application is written with Glitch in mind.
 
 5. Browse to your application at the public URL of your Compute application.
 
-### API
+## API
 
-#### Get past messages
+### Get past messages
 
 ```http
 GET /rooms/{room-id}/messages/
@@ -73,7 +75,7 @@ Returns: JSON object, with fields:
 * `messages`: List of the most recent messages, in time descending order.
 * `last-event-id`: Last event ID (use this when listening for events).
 
-#### Send message
+### Send a message
 
 ```http
 POST /rooms/{room-id}/messages/
@@ -86,7 +88,7 @@ Params:
 
 Returns: JSON object of message
 
-#### Get events
+### Get events
 
 ```http
 GET /rooms/{room-id}/events/
@@ -98,8 +100,4 @@ Params:
 
 Returns: SSE stream
 
-### Architecture
-
-#### Real-time Updates
-
-The `/rooms/{room-id}/events/` endpoint uses [django-eventstream](https://pypi.org/project/django-eventstream/) to use GRIP to serve updated data to clients.
+Real-time updates: This endpoint uses [django-eventstream](https://pypi.org/project/django-eventstream/) to serve updated data to clients via [GRIP](https://pushpin.org/docs/protocols/grip/).
