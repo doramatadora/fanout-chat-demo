@@ -6,6 +6,7 @@ on:
       - main
 
 jobs:
+  # Remember to run `refresh` in the Glitch terminal after sync!
   sync:
     runs-on: ubuntu-latest
     steps:
