@@ -6,6 +6,7 @@ on:
       - main
 
 jobs:
+  # Read: https://support.glitch.com/t/automating-deployment-from-github-how-to/
   sync:
     runs-on: ubuntu-latest
     steps:
