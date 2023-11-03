@@ -1,4 +1,4 @@
-# Real-time chat, powered by Fastly Fanout
+# Real-time chat powered by Fastly Fanout
 
 This is a basic web chat application hosted on [Glitch](https://glitch.com). It relies on [`EventSource`](https://developer.mozilla.org/en-US/docs/Web/API/EventSource) and [Fastly Fanout](https://docs.fastly.com/products/fanout) for real-time functionality.
 
