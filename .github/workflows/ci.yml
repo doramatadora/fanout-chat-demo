@@ -16,5 +16,5 @@ jobs:
           source_repo: doramatadora/fanout-chat-demo
           source_branch: main
           destination_repo: ${{ secrets.GLITCH_GIT_URL }}
-          destination_branch: master
+          destination_branch: main
         
