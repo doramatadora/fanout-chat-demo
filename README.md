@@ -1,6 +1,6 @@
-# Realtime chat powered by Fastly Fanout
+# Real-time chat powered by Fastly Fanout
 
-This is a basic web chat application hosted on [Glitch](https://glitch.com). It uses [`EventSource`](https://developer.mozilla.org/en-US/docs/Web/API/EventSource) and [Fastly Fanout](https://docs.fastly.com/products/fanout) for realtime functionality.
+This is a basic web chat application hosted on [Glitch](https://glitch.com). It relies on [`EventSource`](https://developer.mozilla.org/en-US/docs/Web/API/EventSource) and [Fastly Fanout](https://docs.fastly.com/products/fanout) for real-time functionality.
 
 It is intended as a companion to [doramatadora/passwordless-demo](https://www.github.com/doramatadora/passwordless-demo), a proof-of-concept implementation of passwordless authentication with [passkeys](https://passkeys.dev/), at the network's edge, using [Fastly Compute](https://www.fastly.com/products/edge-compute).
 
@@ -8,8 +8,8 @@ A live instance of the passwordless chat demo can be found at [?.edgecompute.app
 
 ## Components
 
-To enable realtime updates, [Fastly Fanout](https://docs.fastly.com/products/fanout) is positioned as a
-[GRIP (Generic Realtime Intermediary Protocol)](https://pushpin.org/docs/protocols/grip/) proxy. Responses for streaming
+To enable real-time updates, [Fastly Fanout](https://docs.fastly.com/products/fanout) is positioned as a
+[GRIP (Generic Real-time Intermediary Protocol)](https://pushpin.org/docs/protocols/grip/) proxy. Responses for streaming
 requests are held open by Fanout, operating at the Fastly edge. Then, as updates become ready, the backend application publishes these updates through Fanout to all connected clients. For details on this mechanism, see [Real-time Updates](#real-time-updates) below.
 
 ### 1. Backend (origin)
