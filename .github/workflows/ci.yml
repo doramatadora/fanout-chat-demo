@@ -6,14 +6,13 @@ on:
       - main
 
 jobs:
-  # Read: https://dev.to/glitch/automating-my-deploys-from-github-to-glitch-2fpd
   sync:
     runs-on: ubuntu-latest
     steps:
       - name: Sync to Glitch Project
         uses: wei/git-sync@v3
         with:
-          source_repo: doramatadora/fanout-chat-demo
+          source_repo: https://${{ secrets.GITHUB_TOKEN }}@github.com/doramatadora/fanout-chat-demo
           source_branch: main
           destination_repo: ${{ secrets.GLITCH_GIT_URL }}
           destination_branch: main
