@@ -6,11 +6,15 @@ on:
       - main
 
 jobs:
+  # Read: https://dev.to/glitch/automating-my-deploys-from-github-to-glitch-2fpd
   sync:
     runs-on: ubuntu-latest
     steps:
       - name: Sync to Glitch Project
-        uses: kanadgupta/glitch-sync@main
+        uses: wei/git-sync@v3
         with:
-          auth-token: ${{ secrets.GLITCH_AUTH_TOKEN }}
-          project-id: ${{ secrets.GLITCH_PROJECT_ID }}
+          source_repo: doramatadora/fanout-chat-demo
+          source_branch: main
+          destination_repo: ${{ secrets.GLITCH_GIT_URL }}
+          destination_branch: master
+        
