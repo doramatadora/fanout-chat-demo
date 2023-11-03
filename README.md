@@ -2,7 +2,7 @@
 
 This is a basic web chat application hosted on [Glitch](https://glitch.com). It relies on [`EventSource`](https://developer.mozilla.org/en-US/docs/Web/API/EventSource) and [Fastly Fanout](https://docs.fastly.com/products/fanout) for real-time functionality.
 
-It is intended as a companion to [doramatadora/passwordless-demo](https://www.github.com/doramatadora/passwordless-demo), a proof-of-concept implementation of passwordless authentication with [passkeys](https://passkeys.dev/), at the network's edge, using [Fastly Compute](https://www.fastly.com/products/edge-compute).
+✨ It is intended as a companion to [doramatadora/passwordless-demo](https://www.github.com/doramatadora/passwordless-demo), a proof-of-concept implementation of passwordless authentication with [passkeys](https://passkeys.dev/), at the network's edge, using [Fastly Compute](https://www.fastly.com/products/edge-compute). ✨
 
 A live instance of the passwordless chat demo can be found at [?.edgecompute.app](https://?.edgecompute.app/).
 
@@ -32,18 +32,19 @@ To run your own chat app, you will need a [Fastly Compute](https://developer.fas
 
 The chat application is written with Glitch in mind.
 
-> NOTE: Consider [boosting your Glitch app](https://glitch.happyfox.com/kb/article/73-glitch-pro/) so that it doesn't go to sleep.
+> 💡 Consider [boosting your Glitch app](https://glitch.happyfox.com/kb/article/73-glitch-pro/) so that it doesn't go to sleep.
 
 1. Create a new project on [Glitch](https://glitch.com/) and import this GitHub repository. Note the public URL of your project, which
    typically has the domain name `https://<project-name>.glitch.me`.
 
 2. Set up the environment. In the Glitch interface, modify `.env` and set the following values:
 
-    * `GRIP_VERIFY_KEY`: `base64:LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUZrd0V3WUhLb1pJemowQ0FRWUlLb1pJemowREFRY0RRZ0FFQ0tvNUExZWJ5RmNubVZWOFNFNU9uKzhHODFKeQpCalN2Y3J4NFZMZXRXQ2p1REFtcHBUbzN4TS96ejc2M0NPVENnSGZwLzZsUGRDeVlqanFjK0dNN3N3PT0KLS0tLS1FTkQgUFVCTElDIEtFWS0tLS0t`(\*)
+    * `GRIP_VERIFY_KEY`: ```
+    base64:LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUZrd0V3WUhLb1pJemowQ0FRWUlLb1pJemowREFRY0RRZ0FFQ0tvNUExZWJ5RmNubVZWOFNFNU9uKzhHODFKeQpCalN2Y3J4NFZMZXRXQ2p1REFtcHBUbzN4TS96ejc2M0NPVENnSGZwLzZsUGRDeVlqanFjK0dNN3N3PT0KLS0tLS1FTkQgUFVCTElDIEtFWS0tLS0t```
 
-        (*) This is a base64-encoded version of the public key published at [Validating GRIP requests](https://developer.fastly.com/learning/concepts/real-time-messaging/fanout/#validating-grip-requests) on the Fastly Developer Hub.
+        This is a base64-encoded version of the public key published at [Validating GRIP requests](https://developer.fastly.com/learning/concepts/real-time-messaging/fanout/#validating-grip-requests) on the Fastly Developer Hub.
 
-    * `DJANGO_SECRET_KEY`: Django uses a secret key to provide cryptographic signing. Set a unique, unpredictable value.
+    * `DJANGO_SECRET_KEY`: Django uses a secret key to provide cryptographic signing. Set a unique value that's hard to guess.
 
         See [SECRET_KEY](https://docs.djangoproject.com/en/4.2/ref/settings/#secret-key) in the Django documentation for
         more details. 
